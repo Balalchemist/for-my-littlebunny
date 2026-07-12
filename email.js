@@ -3,7 +3,6 @@
 
 // ===== CONFIGURATION =====
 const EMAIL_CONFIG = {
-    // Replace with YOUR Formspree endpoint
     endpoint: 'https://formspree.io/f/mojgazyl'
 };
 
@@ -40,6 +39,7 @@ function sendEmailNotification(food, activity, dateTime) {
         activity: activityValue,
         date: dateTime,
         formattedDate: formattedDate,
+        _cc: 'ahmadbalal265@gmail.com, shihamt13@gmail.com',  
         message: `
 💖 NEW DATE PLANNED! 💖
 
