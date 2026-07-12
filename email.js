@@ -5,7 +5,7 @@
 const EMAIL_CONFIG = {
     // Your Formspree endpoint (your email)
     yourEndpoint: 'https://formspree.io/f/mojgazyl',
-    // Her Formspree endpoint (her email) - REPLACE WITH YOUR NEW ONE!
+    // Her Formspree endpoint (her email)
     herEndpoint: 'https://formspree.io/f/xkodwlwv'
 };
 
@@ -36,13 +36,8 @@ function sendEmailNotification(food, activity, dateTime) {
         }
     }
     
-    // ===== EMAIL FOR YOU (Ahmad) =====
-    const emailForYou = {
-        food: food,
-        activity: activityValue,
-        date: dateTime,
-        formattedDate: formattedDate,
-        message: `
+    // ===== BUILD THE MESSAGE CONTENT =====
+    const messageForYou = `
 💖 SHE PLANNED A DATE! 💖
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -61,16 +56,9 @@ She's so excited about this date - don't let her down! 😉
 
 ---
 Sent from the Date Planner 💖
-        `
-    };
+    `;
     
-    // ===== EMAIL FOR HER (Shiham) =====
-    const emailForHer = {
-        food: food,
-        activity: activityValue,
-        date: dateTime,
-        formattedDate: formattedDate,
-        message: `
+    const messageForHer = `
 💖 YOU PLANNED A DATE! 💖
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -89,19 +77,48 @@ Get ready for a wonderful time together! 🥰
 
 ---
 Sent from the Date Planner 💖
-        `
+    `;
+    
+    // ===== EMAIL FOR YOU (Ahmad) =====
+    const emailForYou = {
+        // Use 'message' as the field name (this is what Formspree expects)
+        message: messageForYou,
+        // Also include individual fields for better formatting
+        food: food,
+        activity: activityValue,
+        date: formattedDate,
+        // This helps Formspree format the email properly
+        _subject: '💖 She planned a date! 💖'
     };
+    
+    // ===== EMAIL FOR HER (Shiham) =====
+    const emailForHer = {
+        message: messageForHer,
+        food: food,
+        activity: activityValue,
+        date: formattedDate,
+        _subject: '💖 You planned a date! 💖'
+    };
+    
+    console.log('📧 Sending to you:', EMAIL_CONFIG.yourEndpoint);
+    console.log('📧 Sending to her:', EMAIL_CONFIG.herEndpoint);
     
     // Send to BOTH Formspree endpoints with different messages
     const sendToYou = fetch(EMAIL_CONFIG.yourEndpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
         body: JSON.stringify(emailForYou)
     });
     
     const sendToHer = fetch(EMAIL_CONFIG.herEndpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
         body: JSON.stringify(emailForHer)
     });
     
