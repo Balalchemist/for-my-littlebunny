@@ -1,0 +1,627 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #ffe4e9 0%, #ffd6e0 30%, #ffc8d6 60%, #ffb3c6 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.container {
+    background: white;
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+
+    
+}
+
+h1 {
+    color: #d6336c;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #e75480;
+    font-size: 1.5em;
+    margin-bottom: 30px;
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+
+button {
+    padding: 15px 35px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+#yes-btn {
+    color: white;
+    background: linear-gradient(135deg, #ff6b8a, #d6336c);
+    box-shadow: 0 4px 15px rgba(214, 51, 108, 0.4);
+}
+
+#yes-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(247, 120, 105, 0.882);
+}
+
+#no-btn {
+    background: linear-gradient(135deg, #ffb3c6, #ff8fab);
+    color: white;
+    position: relative;
+}
+
+#hint-text {
+    color: #ff8fab;
+    font-style: italic;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+
+
+
+/* ===== OTHER INPUT STYLES ===== */
+#other-activity-container {
+    margin-top: 15px;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.other-input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #e74c3c;
+    border-radius: 15px;
+    font-size: 1em;
+    font-family: 'Georgia', serif;
+    transition: all 0.3s ease;
+    background: #fffafa;
+}
+
+.other-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.1);
+    background: white;
+}
+
+.other-input::placeholder {
+    color: #bbb;
+    font-style: italic;
+}
+
+/* Highlight the Other card when selected */
+#other-activity-option:has(input:checked) {
+    border-color: #9B59B6;
+    background: #f8f0ff;
+    box-shadow: 0 5px 20px rgba(155, 89, 182, 0.2);
+}
+
+
+/* ===== FINALE STYLES ===== */
+
+.finale-container {
+    animation: celebrate 1s ease-out;
+}
+
+@keyframes celebrate {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) rotate(-5deg);
+    }
+    50% {
+        transform: scale(1.05) rotate(2deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Big celebratory title */
+.finale-title {
+    font-size: 2.8em;
+    color: #ff1493;
+    margin-bottom: 10px;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Her choices displayed beautifully */
+.finale-choices {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.choice-card-finale {
+    background: linear-gradient(135deg, #fff5f5, #ffe8e8);
+    padding: 25px 15px;
+    border-radius: 20px;
+    border: 2px solid #ffd6d6;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.choice-card-finale:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.15);
+}
+
+.choice-card-finale .emoji-big {
+    font-size: 3em;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.choice-card-finale .choice-label {
+    font-size: 0.85em;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.choice-card-finale .choice-value {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ff1493;
+}
+
+/* Heartfelt message - the star of the show! */
+.heartfelt-message {
+    background: linear-gradient(135deg, #fff5f5, #ffffff, #fff5f5);
+    padding: 40px 35px;
+    border-radius: 25px;
+    margin: 30px 0;
+    border: 2px solid #ffb3b3;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative hearts around the message */
+.heartfelt-message::before,
+.heartfelt-message::after {
+    content: '💕';
+    position: absolute;
+    font-size: 2em;
+    opacity: 0.2;
+}
+
+.heartfelt-message::before {
+    top: 10px;
+    left: 15px;
+    transform: rotate(-15deg);
+}
+
+.heartfelt-message::after {
+    bottom: 10px;
+    right: 15px;
+    transform: rotate(15deg);
+}
+
+.heartfelt-message .greeting {
+    font-size: 1.4em;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.heartfelt-message .message-text {
+    font-size: 1.1em;
+    line-height: 2;
+    color: #444;
+    margin: 15px 0;
+    font-style: italic;
+}
+
+.heartfelt-message .message-text .highlight {
+    color: #ff1493;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.heartfelt-message .signature {
+    margin-top: 25px;
+    font-size: 1.2em;
+    color: #ff1493;
+    font-style: italic;
+}
+
+.heartfelt-message .signature-name {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #ff1493;
+    margin-top: 5px;
+}
+
+/* Floating hearts decoration for finale */
+.floating-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 30px;
+    animation: floatHeart 6s infinite linear;
+    opacity: 0.15;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(100vh) rotate(0deg) scale(0.5);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.15;
+    }
+    90% {
+        opacity: 0.15;
+    }
+    100% {
+        transform: translateY(-10vh) rotate(720deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Reset button */
+#reset-btn {
+    background: #95a5a6;
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+#reset-btn:hover {
+    transform: scale(1.05);
+    background: #7f8c8d;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive finale */
+@media (max-width: 600px) {
+    .finale-choices {
+        grid-template-columns: 1fr;
+    }
+    
+    .finale-title {
+        font-size: 2em;
+    }
+    
+    .heartfelt-message {
+        padding: 25px 20px;
+    }
+    
+    .heartfelt-message .message-text {
+        font-size: 1em;
+    }
+}
+
+
+
+
+/* ===== QUESTIONNAIRE - STEP BY STEP ===== */
+
+/* Hide all question steps by default */
+.question-step {
+    display: none;
+    animation: slideIn 0.5s ease-out;
+}
+
+.question-step.active {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Progress Bar */
+.progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    gap: 0;
+}
+
+.progress-step {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ffc8d6;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.progress-step.active {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #ff6b8a, #d6336c);
+    box-shadow: 0 0 20px rgba(214, 51, 108, 0.3);}
+
+.progress-step.completed {
+    background: linear-gradient(135deg, #ff85a1, #ff6b8a);
+}
+
+.progress-line {
+    flex: 1;
+    height: 3px;
+    background: #ffc8d6;
+    transition: all 0.3s ease;
+    max-width: 60px;
+}
+
+.progress-line.completed {
+    background: linear-gradient(135deg, #ff85a1, #ff6b8a);
+}
+
+/* Question Header */
+.question-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.question-number {
+    display: inline-block;
+    background: #ffe4e9;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    color: #d6336c;
+    margin-bottom: 10px;
+}
+
+.question-header h2 {
+    color: #d6336c;
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+.question-subtitle {
+    color: #ff8fab;
+    font-size: 1.1em;
+}
+
+/* Giant Option Cards */
+.options-grid-large {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.option-card-large {
+    background: #fff5f7;
+    padding: 30px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    min-height: 160px;
+    justify-content: center;
+}
+
+.option-card-large:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: #ffb3c6;
+    box-shadow: 0 10px 30px rgba(255, 105, 135, 0.15);
+    background: #ffe4e9;
+    
+}
+
+.option-card-large input[type="radio"] {
+    display: none;
+}
+
+.option-card-large:has(input:checked) {
+    border-color: #d6336c;
+     background: linear-gradient(135deg, #ffe4e9, #ffc8d6);
+    box-shadow: 0 5px 25px rgba(214, 51, 108, 0.2);
+    transform: translateY(-5px);
+}
+
+.option-emoji-large {
+    font-size: 4em;
+    display: block;
+}
+
+.option-text-large {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #c2185b;
+}
+
+/* Date Picker - Large */
+.date-picker-large {
+    margin: 30px 0;
+}
+
+.date-picker-large input {
+    width: 100%;
+    padding: 20px 25px;
+    border: 3px solid #ffb3c6;
+    border-radius: 20px;
+    font-size: 1.3em;
+    font-family: 'Georgia', serif;
+    transition: all 0.3s ease;
+    background: #fafafa;
+    text-align: center;
+}
+
+.date-picker-large input:focus {
+    outline: none;
+    border-color: #d6336c;
+    box-shadow: 0 0 0 4px rgba(214, 51, 108, 0.1);
+    background: white;
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.next-btn, .back-btn {
+    padding: 15px 40px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    min-width: 140px;
+}
+
+.next-btn {
+    color: white;
+    background: linear-gradient(135deg, #ff6b8a, #d6336c);
+    box-shadow: 0 4px 15px rgba(214, 51, 108, 0.3);}
+
+.next-btn:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(214, 51, 108, 0.5);
+}
+
+.next-btn:disabled {
+    background: #ffb3c6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.back-btn {
+    background: #ffe4e9;
+    color: #d6336c;
+}
+
+.back-btn:hover {
+    background: #ffc8d6;
+    transform: scale(1.05);
+}
+
+/* Other Input - Large */
+.other-input-large {
+    width: 100%;
+    padding: 18px 25px;
+    border: 3px solid #ffb3c6;
+    border-radius: 20px;
+    font-size: 1.2em;
+    font-family: 'Georgia', serif;
+    transition: all 0.3s ease;
+    background: #fafafa;
+}
+
+.other-input-large:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(214, 51, 108, 0.1);
+    background: white;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .options-grid-large {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .option-card-large {
+        padding: 20px 15px;
+        min-height: 130px;
+    }
+    
+    .option-emoji-large {
+        font-size: 3em;
+    }
+    
+    .option-text-large {
+        font-size: 1em;
+    }
+    
+    .question-header h2 {
+        font-size: 1.5em;
+    }
+    
+    .date-picker-large input {
+        font-size: 1em;
+        padding: 15px;
+    }
+    
+    .nav-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .next-btn, .back-btn {
+        width: 100%;
+        min-width: unset;
+    }
+}

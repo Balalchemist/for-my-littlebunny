@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💞Date for my princess! 💞</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <!-- ===== LANDING PAGE ===== -->
+    <div id="landing-page">
+     <div class="container">
+        <h1>My Dearest Shiham,</h1>
+        <h2>May I take you on a special date?</h2>
+
+        <div class="button-group">
+            <button id="yes-btn">💖 Yes, my handsome boy!</button>
+            <button id="no-btn">🤮 No, you're stinky ew!</button>
+        </div>
+        
+        <p id="hint-text">(PS: The "No" button might be a little shy... 😉)</p>
+     </div>
+    </div>
+
+<!-- ===== QUESTIONNAIRE PAGE ===== -->
+<div id="questionnaire-page" style="display: none;">
+    <div class="container questionnaire-container">
+        
+        <!-- Progress Indicator -->
+        <div class="progress-bar">
+            <div class="progress-step active" id="step-1-dot">1</div>
+            <div class="progress-line" id="line-1"></div>
+            <div class="progress-step" id="step-2-dot">2</div>
+            <div class="progress-line" id="line-2"></div>
+            <div class="progress-step" id="step-3-dot">3</div>
+        </div>
+        
+        <!-- Question 1: Food -->
+        <div class="question-step active" id="question-1">
+            <div class="question-header">
+                <span class="question-number">Step 1 of 3</span>
+                <h2>🍽️ What would you like to eat?</h2>
+                <p class="question-subtitle">Pick your favorite!</p>
+            </div>
+            <div class="options-grid-large">
+                <label class="option-card-large" data-food="Italian">
+                    <input type="radio" name="food" value="Italian">
+                    <span class="option-emoji-large">🍝</span>
+                    <span class="option-text-large">Italian</span>
+                </label>
+                <label class="option-card-large" data-food="Sushi">
+                    <input type="radio" name="food" value="Sushi">
+                    <span class="option-emoji-large">🍣</span>
+                    <span class="option-text-large">Sushi</span>
+                </label>
+                <label class="option-card-large" data-food="Mexican">
+                    <input type="radio" name="food" value="Mexican">
+                    <span class="option-emoji-large">🌮</span>
+                    <span class="option-text-large">Mexican</span>
+                </label>
+                <label class="option-card-large" data-food="Burgers">
+                    <input type="radio" name="food" value="Burgers">
+                    <span class="option-emoji-large">🍔</span>
+                    <span class="option-text-large">Burgers</span>
+                </label>
+                <label class="option-card-large" data-food="Shawarma">
+                    <input type="radio" name="food" value="Shawarma">
+                    <span class="option-emoji-large">🥙</span>
+                    <span class="option-text-large">Shawarma</span>
+                </label>
+                <label class="option-card-large" data-food="Surprise">
+                    <input type="radio" name="food" value="Surprise">
+                    <span class="option-emoji-large">🎁</span>
+                    <span class="option-text-large">Surprise Me!</span>
+                </label>
+            </div>
+            <button class="next-btn" id="to-question-2" disabled>Next Step ➜</button>
+        </div>
+        
+        <!-- Question 2: Activity -->
+        <div class="question-step" id="question-2">
+            <div class="question-header">
+                <span class="question-number">Step 2 of 3</span>
+                <h2>🎭 What activity sounds fun?</h2>
+                <p class="question-subtitle">Choose what we'll do together!</p>
+            </div>
+            <div class="options-grid-large">
+                <label class="option-card-large" data-activity="Movie Night">
+                    <input type="radio" name="activity" value="Movie Night">
+                    <span class="option-emoji-large">🎬</span>
+                    <span class="option-text-large">Movie Night</span>
+                </label>
+                <label class="option-card-large" data-activity="Virtual Museum">
+                    <input type="radio" name="activity" value="Virtual Museum">
+                    <span class="option-emoji-large">🏛️</span>
+                    <span class="option-text-large">Virtual Museum</span>
+                </label>
+                <label class="option-card-large" data-activity="Game Night">
+                    <input type="radio" name="activity" value="Game Night">
+                    <span class="option-emoji-large">🎮</span>
+                    <span class="option-text-large">Game Night</span>
+                </label>
+                <label class="option-card-large" data-activity="Deep Convos">
+                    <input type="radio" name="activity" value="Deep Convos">
+                    <span class="option-emoji-large">💞</span>
+                    <span class="option-text-large">Deep Convos</span>
+                </label>
+                <label class="option-card-large" data-activity="Other" id="other-activity-option">
+                    <input type="radio" name="activity" value="Other">
+                    <span class="option-emoji-large">✍️</span>
+                    <span class="option-text-large">Other (tell me!)</span>
+                </label>
+            </div>
+            <div id="other-activity-container" style="display: none; margin: 15px 0;">
+                <input type="text" id="other-activity-input" 
+                       placeholder="What activity would you like to do? 💕" 
+                       class="other-input-large">
+            </div>
+            <div class="nav-buttons">
+                <button class="back-btn">⬅ Back</button>
+                <button class="next-btn" id="to-question-3" disabled>Next Step ➜</button>
+            </div>
+        </div>
+        
+        <!-- Question 3: Date & Time -->
+        <div class="question-step" id="question-3">
+            <div class="question-header">
+                <span class="question-number">Step 3 of 3</span>
+                <h2>📅 When should we have our date?</h2>
+                <p class="question-subtitle">Pick a time that works best for you! 💕</p>
+            </div>
+            <div class="date-picker-large">
+                <input type="datetime-local" id="date-time-picker">
+            </div>
+            <div class="nav-buttons">
+                <button class="back-btn">⬅ Back</button>
+                <button class="next-btn" id="plan-date-btn">💖 Plan Our Date!</button>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<!-- ===== FINALE PAGE ===== -->
+    <div id="finale-page" style="display: none;">
+        <div class="container finale-container">
+            <div id="finale-content">
+                <!-- This will be filled by JavaScript -->
+            </div>
+            <button id="reset-btn" style="margin-top: 30px;">🔄 Plan Another Date?</button>
+        </div>
+    </div>
+
+
+
+    
+
+<script src="email.js"></script>
+
+
+<script src="landing-page.js"></script>
+<script src="questionnaire.js"></script>
+<script src="finale.js"></script>
+
+</body>
+
+</html>
