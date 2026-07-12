@@ -3,7 +3,10 @@
 
 // ===== CONFIGURATION =====
 const EMAIL_CONFIG = {
-    endpoint: 'https://formspree.io/f/mojgazyl'
+    // Your Formspree endpoint (your email)
+    yourEndpoint: 'https://formspree.io/f/mojgazyl',
+    // Her Formspree endpoint (her email) - REPLACE WITH YOUR NEW ONE!
+    herEndpoint: 'https://formspree.io/f/xkodwlwv'
 };
 
 // ===== SEND EMAIL =====
