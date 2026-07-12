@@ -81,22 +81,17 @@ Sent from the Date Planner 💖
     
     // ===== EMAIL FOR YOU (Ahmad) =====
     const emailForYou = {
-        // Use 'message' as the field name (this is what Formspree expects)
+        // ONLY send the message field - Formspree will use this as the email body
         message: messageForYou,
-        // Also include individual fields for better formatting
-        food: food,
-        activity: activityValue,
-        date: formattedDate,
-        // This helps Formspree format the email properly
+        // Hide the individual fields so they don't appear in the email
+        _gotcha: '🙈', // This is a honeypot field - it tells Formspree to hide other fields
         _subject: '💖 She planned a date! 💖'
     };
     
     // ===== EMAIL FOR HER (Shiham) =====
     const emailForHer = {
         message: messageForHer,
-        food: food,
-        activity: activityValue,
-        date: formattedDate,
+        _gotcha: '🙈',
         _subject: '💖 You planned a date! 💖'
     };
     
