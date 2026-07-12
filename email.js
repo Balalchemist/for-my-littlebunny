@@ -36,54 +36,91 @@ function sendEmailNotification(food, activity, dateTime) {
         }
     }
     
-    // Create the email content
-    const emailData = {
+    // ===== EMAIL FOR YOU (Ahmad) =====
+    const emailForYou = {
         food: food,
         activity: activityValue,
         date: dateTime,
         formattedDate: formattedDate,
-        _cc: 'ahmadbalal265@gmail.com, shihamt13@gmail.com',  
         message: `
-💖 NEW DATE PLANNED! 💖
+💖 SHE PLANNED A DATE! 💖
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🍽️  What to eat: ${food}
+🍽️  What she wants to eat: ${food}
 
-🎭  Activity: ${activityValue}
+🎭  What she wants to do: ${activityValue}
 
-📅  Date & Time: ${formattedDate}
+📅  When: ${formattedDate}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💕 Time to start planning! 💕
+💕 Time to start planning! Make it special! 💕
+
+She's so excited about this date - don't let her down! 😉
 
 ---
 Sent from the Date Planner 💖
         `
     };
     
-    // Send to Formspree
-    return fetch(EMAIL_CONFIG.endpoint, {
+    // ===== EMAIL FOR HER (Shiham) =====
+    const emailForHer = {
+        food: food,
+        activity: activityValue,
+        date: dateTime,
+        formattedDate: formattedDate,
+        message: `
+💖 YOU PLANNED A DATE! 💖
+
+━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🍽️  You chose: ${food}
+
+🎭  You chose: ${activityValue}
+
+📅  On: ${formattedDate}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💕 He's already planning something amazing for you! 💕
+
+Get ready for a wonderful time together! 🥰
+
+---
+Sent from the Date Planner 💖
+        `
+    };
+    
+    // Send to BOTH Formspree endpoints with different messages
+    const sendToYou = fetch(EMAIL_CONFIG.yourEndpoint, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(emailData)
-    })
-    .then(response => {
-        if (response.ok) {
-            console.log('✅ Email sent successfully!');
-            return true;
-        } else {
-            console.log('❌ Email error:', response.status);
-            return false;
-        }
-    })
-    .catch(error => {
-        console.log('❌ Email error:', error);
-        return false;
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(emailForYou)
     });
+    
+    const sendToHer = fetch(EMAIL_CONFIG.herEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(emailForHer)
+    });
+    
+    // Wait for both to complete
+    return Promise.all([sendToYou, sendToHer])
+        .then(responses => {
+            const allSuccess = responses.every(res => res.ok);
+            if (allSuccess) {
+                console.log('✅ Emails sent successfully to both!');
+                return true;
+            } else {
+                console.log('❌ Some emails failed:', responses.map(r => r.status));
+                return false;
+            }
+        })
+        .catch(error => {
+            console.error('❌ Email error:', error);
+            return false;
+        });
 }
 
 // ===== SHOW NOTIFICATION =====
@@ -166,9 +203,9 @@ function testEmail() {
         .then(success => {
             showEmailNotification(success);
             if (success) {
-                console.log('✅ Test email sent! Check your inbox.');
+                console.log('✅ Test emails sent! Check both inboxes.');
             } else {
-                console.log('❌ Test email failed. Check your Formspree endpoint.');
+                console.log('❌ Test emails failed. Check your Formspree endpoints.');
             }
         });
 }
